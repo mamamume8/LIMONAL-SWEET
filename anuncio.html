@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menú · Limonal Sweet 🍰</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --cream:      #fdf6ec;
+      --peach:      #f5c8a0;
+      --coral:      #e8795a;
+      --dark-brown: #2b1a12;
+      --gold:       #d4a24e;
+      --mint:       #a8d5c2;
+      --lemon:      #f0e080;
+      --soft-pink:  #f4c6c0;
+      --lavender:   #d8cff5;
+      --sky:        #b8dff5;
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--dark-brown);
+      font-family: 'DM Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--dark-brown);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2rem;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.25);
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 900;
+      font-style: italic;
+      color: var(--cream);
+      text-decoration: none;
+    }
+    .nav-logo span { color: var(--coral); }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      letter-spacing: 0.05em;
+      color: var(--peach);
+      text-decoration: none;
+      border: 1px solid rgba(255,255,255,0.15);
+      padding: 0.4rem 1rem;
+      border-radius: 999px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .nav-back:hover { background: rgba(255,255,255,0.08); color: var(--cream); }
+
+    /* ── HERO BANNER ── */
+    .menu-hero {
+      background: var(--dark-brown);
+      padding: 5rem 2rem 4rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .menu-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse 80% 60% at 50% 120%, rgba(232,121,90,0.18) 0%, transparent 70%);
+    }
+    .menu-hero-tag {
+      display: inline-block;
+      font-size: 0.7rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      color: var(--gold);
+      border: 1px solid var(--gold);
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+    .menu-hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3rem, 8vw, 6rem);
+      font-weight: 900;
+      color: var(--cream);
+      line-height: 1;
+      position: relative;
+    }
+    .menu-hero h1 em { color: var(--coral); font-style: italic; }
+    .menu-hero p {
+      margin-top: 1rem;
+      color: var(--peach);
+      font-size: 1.05rem;
+      font-weight: 300;
+      position: relative;
+    }
+
+    /* ── CATEGORY TABS ── */
+    .tabs {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding: 2.5rem 1.5rem 0;
+    }
+    .tab-btn {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.55rem 1.5rem;
+      border-radius: 999px;
+      border: 2px solid var(--dark-brown);
+      background: transparent;
+      color: var(--dark-brown);
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, transform 0.15s;
+    }
+    .tab-btn:hover { transform: translateY(-2px); }
+    .tab-btn.active {
+      background: var(--dark-brown);
+      color: var(--cream);
+    }
+
+    /* ── SECTION TITLES ── */
+    .cat-section { padding: 3.5rem 1.5rem; max-width: 1160px; margin: 0 auto; }
+    .cat-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+    }
+    .cat-icon { font-size: 2.2rem; }
+    .cat-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      font-weight: 700;
+      color: var(--dark-brown);
+    }
+    .cat-line {
+      flex: 1;
+      height: 2px;
+      background: linear-gradient(to right, var(--coral), transparent);
+      border: none;
+    }
+
+    /* ── PRODUCT GRID ── */
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 1.4rem;
+    }
+
+    .product-card {
+      background: #fff;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(43,26,18,0.07);
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+    .product-card:hover {
+      transform: translateY(-7px);
+      box-shadow: 0 16px 40px rgba(43,26,18,0.14);
+    }
+
+    .product-visual {
+      height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    /* Color per category */
+    .cat-cakes   .product-visual { background: linear-gradient(135deg, var(--soft-pink), var(--peach)); }
+    .cat-drinks  .product-visual { background: linear-gradient(135deg, var(--sky), var(--mint)); }
+    .cat-special .product-visual { background: linear-gradient(135deg, var(--lemon), var(--peach)); }
+
+    .product-body { padding: 1.2rem; flex: 1; display: flex; flex-direction: column; gap: 0.4rem; }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--dark-brown);
+    }
+    .product-desc {
+      font-size: 0.83rem;
+      color: #7a5540;
+      line-height: 1.55;
+      flex: 1;
+    }
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 0.9rem;
+    }
+    .product-price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--coral);
+    }
+    .product-tag {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      background: var(--lemon);
+      color: var(--dark-brown);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+    }
+    .product-tag.popular { background: var(--coral); color: #fff; }
+    .product-tag.new     { background: var(--mint);  color: var(--dark-brown); }
+
+    /* ── DIVIDER BETWEEN SECTIONS ── */
+    .section-divider {
+      border: none;
+      border-top: 1px dashed rgba(43,26,18,0.1);
+      margin: 0 1.5rem;
+    }
+
+    /* ── CTA BAND ── */
+    .cta-band {
+      background: var(--coral);
+      padding: 3.5rem 2rem;
+      text-align: center;
+    }
+    .cta-band h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 900;
+      font-style: italic;
+      color: #fff;
+      margin-bottom: 0.8rem;
+    }
+    .cta-band p { color: rgba(255,255,255,0.85); font-size: 1rem; margin-bottom: 2rem; }
+    .cta-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: #fff;
+      color: var(--coral);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 1.05rem;
+      font-weight: 700;
+      padding: 0.9rem 2.4rem;
+      border-radius: 999px;
+      text-decoration: none;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .cta-btn:hover { transform: scale(1.04) translateY(-3px); box-shadow: 0 14px 40px rgba(0,0,0,0.25); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark-brown);
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+    .footer-logo { font-family:'Playfair Display',serif; font-size:1.8rem; font-weight:900; font-style:italic; color:var(--cream); }
+    .footer-logo span { color:var(--coral); }
+    .footer-sub { font-size:0.75rem; color:rgba(253,246,236,0.3); margin-top:0.4rem; letter-spacing:0.15em; text-transform:uppercase; }
+    .footer-divider { border:none; border-top:1px solid rgba(255,255,255,0.07); margin:1.2rem auto; max-width:160px; }
+    .footer-copy { font-size:0.72rem; color:rgba(253,246,236,0.25); }
+
+    /* ── HIDDEN SECTIONS ── */
+    .cat-section.hidden { display: none; }
+
+    @media(max-width:600px){
+      .product-grid { grid-template-columns: 1fr 1fr; gap: 0.9rem; }
+      .product-visual { height: 110px; font-size: 3.2rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="limonal-sweet.html" class="nav-logo">Limonal <span>Sweet</span></a>
+  <a href="limonal-sweet.html" class="nav-back">
+    ← Volver al inicio
+  </a>
+</nav>
+
+<!-- HERO -->
+<div class="menu-hero">
+  <p class="menu-hero-tag">Catálogo completo · 2026</p>
+  <h1>Nuestro <em>Menú</em></h1>
+  <p>Cakes artesanales y bebidas frías, hechos con amor estudiantil. 🎓</p>
+</div>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="filterCat('all', this)">🍽 Todo</button>
+  <button class="tab-btn" onclick="filterCat('cakes', this)">🎂 Cakes</button>
+  <button class="tab-btn" onclick="filterCat('drinks', this)">🥤 Bebidas</button>
+  <button class="tab-btn" onclick="filterCat('special', this)">⭐ Especiales</button>
+</div>
+
+<!-- ══════════ CAKES ══════════ -->
+<div class="cat-section cat-cakes" id="sec-cakes">
+  <div class="cat-header">
+    <span class="cat-icon">🎂</span>
+    <h2 class="cat-title">Cakes Artesanales</h2>
+    <hr class="cat-line"/>
+  </div>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-visual">🍋</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Limón</div>
+        <div class="product-desc">Bizcocho esponjoso, crema de limón casera y glaseado brillante. El clásico que nunca falla.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.75</span>
+          <span class="product-tag popular">Popular</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍫</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Chocolate</div>
+        <div class="product-desc">Húmedo y oscuro, bañado en ganache de cacao. Intensamente irresistible.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.90</span>
+          <span class="product-tag popular">Favorito</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍓</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Fresa</div>
+        <div class="product-desc">Bizcocho suave con crema chantilly y fresas frescas cortadas. Fresco y alegre.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.80</span>
+          <span class="product-tag">Delicioso</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🥥</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Coco</div>
+        <div class="product-desc">Esponjoso con ralladura de coco y cobertura cremosa. Sabor tropical en cada bocado.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.75</span>
+          <span class="product-tag new">Nuevo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍌</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Banano</div>
+        <div class="product-desc">Suave, húmedo y naturalmente dulce. Con chips de chocolate y canela. Un hug en forma de cake.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.65</span>
+          <span class="product-tag">Casero</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍊</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Naranja</div>
+        <div class="product-desc">Bizcocho cítrico con jarabe de naranja y cobertura de mermelada artesanal. Refrescante.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.70</span>
+          <span class="product-tag new">Nuevo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🫐</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Moras</div>
+        <div class="product-desc">Esponjoso con compota de moras silvestres y crema suave. Color violeta irresistible.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.85</span>
+          <span class="product-tag popular">Top</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍑</div>
+      <div class="product-body">
+        <div class="product-name">Cake de Durazno</div>
+        <div class="product-desc">Masa vainillada con trozos de durazno en almíbar y glasé de azúcar. Delicado y dulce.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.75</span>
+          <span class="product-tag">Especial</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-divider"/>
+
+<!-- ══════════ BEBIDAS ══════════ -->
+<div class="cat-section cat-drinks" id="sec-drinks">
+  <div class="cat-header">
+    <span class="cat-icon">🥤</span>
+    <h2 class="cat-title">Bebidas Frías</h2>
+    <hr class="cat-line"/>
+  </div>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-visual">🍋</div>
+      <div class="product-body">
+        <div class="product-name">Limonada Clásica</div>
+        <div class="product-desc">Limón exprimido al momento, agua fría y azúcar al gusto. Simple, perfecta, artesanal.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.25</span>
+          <span class="product-tag popular">Popular</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🌿</div>
+      <div class="product-body">
+        <div class="product-name">Limonada de Menta</div>
+        <div class="product-desc">Hojas de menta fresca, limón y hielo granizado. Refrescante y diferente. Verano en vaso.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.50</span>
+          <span class="product-tag popular">Favorita</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍓</div>
+      <div class="product-body">
+        <div class="product-name">Limonada de Fresa</div>
+        <div class="product-desc">Mezcla de fresas licuadas, limón y sirope natural. Rosa, fría y deliciosa.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.50</span>
+          <span class="product-tag new">Nuevo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🥭</div>
+      <div class="product-body">
+        <div class="product-name">Jugo de Mango</div>
+        <div class="product-desc">Mango maduro licuado con agua fría y toque de limón. 100% natural, sin preservantes.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.25</span>
+          <span class="product-tag">Natural</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍍</div>
+      <div class="product-body">
+        <div class="product-name">Jugo de Piña con Jengibre</div>
+        <div class="product-desc">Piña natural con un toque de jengibre rallado. Digestivo, fresco y tropicalmente delicioso.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.40</span>
+          <span class="product-tag new">Nuevo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🫐</div>
+      <div class="product-body">
+        <div class="product-name">Batido de Moras</div>
+        <div class="product-desc">Moras frescas batidas con leche fría y hielo. Cremoso, morado y lleno de energía.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.75</span>
+          <span class="product-tag popular">Top</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🥤</div>
+      <div class="product-body">
+        <div class="product-name">Agua de Jamaica</div>
+        <div class="product-desc">Flor de jamaica en infusión fría con azúcar y limón. Refrescante, roja y llena de sabor.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.25</span>
+          <span class="product-tag">Artesanal</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍹</div>
+      <div class="product-body">
+        <div class="product-name">Mix Tropical</div>
+        <div class="product-desc">Combinación de mango, maracuyá y piña con hielo picado. La estrella del menú.</div>
+        <div class="product-footer">
+          <span class="product-price">$1.75</span>
+          <span class="product-tag popular">Estrella</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<hr class="section-divider"/>
+
+<!-- ══════════ ESPECIALES ══════════ -->
+<div class="cat-section cat-special" id="sec-special">
+  <div class="cat-header">
+    <span class="cat-icon">⭐</span>
+    <h2 class="cat-title">Combos Especiales</h2>
+    <hr class="cat-line"/>
+  </div>
+
+  <div class="product-grid">
+
+    <div class="product-card">
+      <div class="product-visual">🎁</div>
+      <div class="product-body">
+        <div class="product-name">Combo Dulce &amp; Frío</div>
+        <div class="product-desc">1 porción de Cake de Limón + 1 Limonada Clásica. La combinación perfecta del día.</div>
+        <div class="product-footer">
+          <span class="product-price">$2.75</span>
+          <span class="product-tag popular">Oferta</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🍫🥤</div>
+      <div class="product-body">
+        <div class="product-name">Combo Chocolate Power</div>
+        <div class="product-desc">1 Cake de Chocolate + 1 Batido de Moras. Para los que necesitan energía estudiantil.</div>
+        <div class="product-footer">
+          <span class="product-price">$3.25</span>
+          <span class="product-tag popular">Top Combo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🌴</div>
+      <div class="product-body">
+        <div class="product-name">Combo Tropical</div>
+        <div class="product-desc">1 Cake de Coco + 1 Mix Tropical. Para los amantes del sabor caribeño y fresco.</div>
+        <div class="product-footer">
+          <span class="product-price">$3.25</span>
+          <span class="product-tag new">Nuevo</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="product-card">
+      <div class="product-visual">🎓</div>
+      <div class="product-body">
+        <div class="product-name">Combo Estudiantil</div>
+        <div class="product-desc">1 Cake de Banano + 1 Jugo de Piña con Jengibre. Energía natural para el aprendizaje.</div>
+        <div class="product-footer">
+          <span class="product-price">$2.75</span>
+          <span class="product-tag">Especial</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CTA -->
+<div class="cta-band">
+  <h2>¿Ya elegiste tu favorito?</h2>
+  <p>Haz tu pedido y lo preparamos con todo el sabor del emprendimiento escolar. 🎓</p>
+  <a class="cta-btn" href="https://forms.gle/kHQ31HjArtDK8y9QA" target="_blank" rel="noopener">
+    🛒 Comprar ahora
+  </a>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Limonal <span>Sweet</span></div>
+  <p class="footer-sub">Emprendimiento escolar · 2do Contabilidad</p>
+  <hr class="footer-divider"/>
+  <p class="footer-copy">© 2026 Limonal Sweet — Proyecto educativo de Bachillerato Técnico</p>
+</footer>
+
+<script>
+  function filterCat(cat, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const sections = { cakes: 'sec-cakes', drinks: 'sec-drinks', special: 'sec-special' };
+    if (cat === 'all') {
+      Object.values(sections).forEach(id => document.getElementById(id).classList.remove('hidden'));
+      document.querySelectorAll('.section-divider').forEach(d => d.style.display = '');
+    } else {
+      Object.entries(sections).forEach(([key, id]) => {
+        document.getElementById(id).classList.toggle('hidden', key !== cat);
+      });
+      document.querySelectorAll('.section-divider').forEach(d => d.style.display = 'none');
+    }
+  }
+</script>
+</body>
+</html>
