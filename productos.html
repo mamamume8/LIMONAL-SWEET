@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo de Postres — Limonal Sweet</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #fdfbf7;
+            --text-dark: #2c1b11;
+            --text-muted: #6e5d53;
+            --accent-orange: #e67e22;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            padding: 40px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* --- NAVEGACIÓN SUPERIOR --- */
+        .nav-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 50px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(44, 27, 17, 0.1);
+        }
+
+        .btn-back {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: opacity 0.2s;
+        }
+
+        .btn-back:hover {
+            opacity: 0.7;
+        }
+
+        .brand-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+
+        /* --- CUADRÍCULA DE CATÁLOGO --- */
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(44, 27, 17, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(44, 27, 17, 0.08);
+        }
+
+        /* Contenedor de la Imagen Real */
+        .product-image-container {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .product-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image-container img {
+            transform: scale(1.05);
+        }
+
+        .group-badge {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(255, 255, 255, 0.9);
+            color: var(--text-dark);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Información del Producto */
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            margin-bottom: 6px;
+        }
+
+        .product-slogan {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+
+        /* Fila de Precio y Compra */
+        .action-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: auto;
+            padding-top: 15px;
+            border-top: 1px dashed rgba(44, 27, 17, 0.1);
+        }
+
+        .price {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .btn-order {
+            background-color: var(--text-dark);
+            color: var(--white);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.3s;
+        }
+
+        .btn-order:hover {
+            background-color: var(--accent-orange);
+        }
+
+        @media (max-width: 768px) {
+            .nav-bar { flex-direction: column; gap: 15px; }
+            .brand-title { order: -1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- BARRA DE NAVEGACIÓN -->
+        <nav class="nav-bar">
+            <a href="index.html" class="btn-back">← Volver al Inicio</a>
+            <div class="brand-title">Menú Oficial</div>
+            <div style="width: 120px;"></div> <!-- Espaciador para centrar el título -->
+        </nav>
+
+        <!-- CATÁLOGO DE PRODUCTOS -->
+        <main class="catalog-grid">
+            
+            <!-- PRODUCTO 1: Limonal Pie -->
+            <article class="product-card">
+                <div class="product-image-container">
+                    <span class="group-badge">Grupo 1</span>
+                    <!-- Imagen real de un Pie de Limón -->
+                    <img src="https://images.unsplash.com/photo-1519869325930-281384150729?auto=format&fit=crop&w=600&q=80" alt="Limonal Pie">
+                </div>
+                <div class="product-info">
+                    <h3>Limonal Pie</h3>
+                    <p class="product-slogan">Dulzura y frescura cítrica en cada vasito con base crocante.</p>
+                    <div class="action-row">
+                        <span class="price">$1.00</span>
+                        <a href="https://forms.gle/cohv1LAuzCHFs48p9" target="_blank" rel="noopener noreferrer" class="btn-order">Ordenar</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 2: Maracuyá Sweet -->
+            <article class="product-card">
+                <div class="product-image-container">
+                    <span class="group-badge">Grupo 2</span>
+                    <!-- Imagen real de un postre de maracuyá -->
+                    <img src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?auto=format&fit=crop&w=600&q=80" alt="Maracuyá Sweet">
+                </div>
+                <div class="product-info">
+                    <h3>Maracuyá Sweet</h3>
+                    <p class="product-slogan">Cheesecake tropical cremoso. El equilibrio perfecto entre dulce y ácido.</p>
+                    <div class="action-row">
+                        <span class="price">$1.25</span>
+                        <a href="https://forms.gle/cohv1LAuzCHFs48p9" target="_blank" rel="noopener noreferrer" class="btn-order">Ordenar</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 3: Choco Tres Leches -->
+            <article class="product-card">
+                <div class="product-image-container">
+                    <span class="group-badge">Grupo 3</span>
+                    <!-- Imagen real de un postre de chocolate -->
+                    <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=600&q=80" alt="Choco Tres Leches">
+                </div>
+                <div class="product-info">
+                    <h3>Choco Tres Leches</h3>
+                    <p class="product-slogan">Bizcocho súper húmedo bañado en tres leches con explosión de chocolate.</p>
+                    <div class="action-row">
+                        <span class="price">$1.25</span>
+                        <a href="https://forms.gle/cohv1LAuzCHFs48p9" target="_blank" rel="noopener noreferrer" class="btn-order">Ordenar</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- PRODUCTO 4: Chocoban Delicias -->
+            <article class="product-card">
+                <div class="product-image-container">
+                    <span class="group-badge">Grupo 4</span>
+                    <!-- Imagen real de un postre de banana/chocolate -->
+                    <img src="https://images.unsplash.com/photo-1528825871115-3581a5387919?auto=format&fit=crop&w=600&q=80" alt="Chocoban Delicias">
+                </div>
+                <div class="product-info">
+                    <h3>Chocoban Delicias</h3>
+                    <p class="product-slogan">Chocobanano artesanal premium con cobertura crocante y toppings.</p>
+                    <div class="action-row">
+                        <span class="price">$0.75</span>
+                        <a href="https://forms.gle/cohv1LAuzCHFs48p9" target="_blank" rel="noopener noreferrer" class="btn-order">Ordenar</a>
+                    </div>
+                </div>
+            </article>
+
+        </main>
+    </div>
+
+</body>
+</html>
