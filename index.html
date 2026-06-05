@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Limonal Sweet — Menú de Emprendimiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-cream: #fdfbf7;
+            --text-dark: #2c1b11;
+            --text-muted: #6e5d53;
+            --lemon-soft: #fff199;
+            --mint-soft: #e1f4e5;
+            --coral-soft: #ffe3e0;
+            --choco-soft: #f3e9dc;
+            --accent-orange: #e67e22;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth; /* Para el deslizamiento suave al menú */
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-dark);
+            padding: 60px 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* --- HEADER PRINCIPAL --- */
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        header span {
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            color: var(--text-muted);
+        }
+
+        header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.8rem;
+            font-weight: 700;
+            margin: 10px 0;
+            letter-spacing: -1px;
+        }
+
+        header p {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 30px; /* Espacio para los botones */
+        }
+
+        /* --- BOTONES DE ACCIÓN --- */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 14px 28px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background-color: var(--text-dark);
+            color: var(--white);
+            border: 2px solid var(--text-dark);
+            box-shadow: 0 4px 15px rgba(44, 27, 17, 0.2);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            color: var(--text-dark);
+            box-shadow: none;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--text-dark);
+            border: 2px solid var(--text-dark);
+        }
+
+        .btn-secondary:hover {
+            background-color: var(--text-dark);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+
+        /* --- SECCIÓN: NUESTRO MENÚ DULCE --- */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            margin-bottom: 35px;
+            text-align: center;
+            position: relative;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 70px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(44, 27, 17, 0.04);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(44, 27, 17, 0.08);
+        }
+
+        .product-image {
+            height: 160px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3.5rem;
+        }
+
+        /* Colores pastel personalizados para cada postre */
+        .bg-lemon { background-color: var(--lemon-soft); }
+        .bg-passion { background-color: var(--coral-soft); }
+        .bg-tresleches { background-color: var(--choco-soft); }
+        .bg-banano { background-color: var(--mint-soft); }
+
+        .product-info {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-group {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 600;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            margin-bottom: 6px;
+        }
+
+        .product-info h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .product-slogan {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 0.95rem;
+            color: #d35400;
+            margin-bottom: 12px;
+            font-weight: 500;
+        }
+
+        /* --- SECCIÓN COMPACTA: EL SPRINT DE PLANIFICACIÓN --- */
+        .sprint-section {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(44, 27, 17, 0.04);
+        }
+
+        .sprint-list {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 20px;
+        }
+
+        .sprint-step {
+            padding: 15px;
+            border-left: 2px solid var(--text-dark);
+        }
+
+        .sprint-step.final {
+            border-left: 2px dashed var(--accent-orange);
+            background: #fffbf0;
+            border-radius: 0 12px 12px 0;
+        }
+
+        .sprint-date {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: block;
+            margin-bottom: 6px;
+        }
+
+        .sprint-step h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.1rem;
+            margin-bottom: 4px;
+        }
+
+        .sprint-step p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.8rem; }
+            .sprint-list { grid-template-columns: 1fr; }
+            .action-buttons { flex-direction: column; padding: 0 20px; }
+            .btn { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <!-- ENCABEZADO DE LA MARCA CON BOTONES -->
+        <header>
+            <span>Proyecto Interdisciplinar Contable</span>
+            <h1>Limonal Sweet</h1>
+            <p>2do Contabilidad — UE "Rosa Olga Villacrés Lozano"</p>
+            
+            <!-- Botones de Acción Agregados -->
+            <div class="action-buttons">
+                <a href="#seccion-menu" class="btn btn-secondary">Ver Productos</a>
+                <!-- Link de Google Forms conectado al botón de pedidos -->
+                <a href="https://forms.gle/cohv1LAuzCHFs48p9" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Hacer tu Pedido 📝</a>
+            </div>
+        </header>
+
+        <!-- SECCIÓN DE PRODUCTOS EN VENTA (Con ID para el ancla) -->
+        <main id="seccion-menu" style="scroll-margin-top: 40px;">
+            <h2 class="section-title">El Menú del Emprendimiento</h2>
+            
+            <div class="menu-grid">
+                
+                <!-- Producto 1 -->
+                <div class="product-card">
+                    <div class="product-image bg-lemon">🍰</div>
+                    <div class="product-info">
+                        <span class="product-group">Grupo 1</span>
+                        <h3>Limonal Pie</h3>
+                        <p class="product-slogan">"Try our lemon pie!"</p>
+                    </div>
+                </div>
+
+                <!-- Producto 2 -->
+                <div class="product-card">
+                    <div class="product-image bg-passion">🥭</div>
+                    <div class="product-info">
+                        <span class="product-group">Grupo 2</span>
+                        <h3>Maracuyá Sweet</h3>
+                        <p class="product-slogan">"Sweet passion fruit cheesecake!"</p>
+                    </div>
+                </div>
+
+                <!-- Producto 3 -->
+                <div class="product-card">
+                    <div class="product-image bg-tresleches">🍫</div>
+                    <div class="product-info">
+                        <span class="product-group">Grupo 3</span>
+                        <h3>Choco Tres Leches</h3>
+                        <p class="product-slogan">"Delicious chocolate tres leches!"</p>
+                    </div>
+                </div>
+
+                <!-- Producto 4 -->
+                <div class="product-card">
+                    <div class="product-image bg-banano">🍌</div>
+                    <div class="product-info">
+                        <span class="product-group">Grupo 4</span>
+                        <h3>ChocoLimonal</h3>
+                        <p class="product-slogan">"Handmade chocobanana! Buy now!"</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- CRONOGRAMA MINIMALISTA -->
+            <section class="sprint-section">
+                <h2 class="section-title" style="font-size: 1.8rem; margin-bottom: 25px; text-align: left;">Sprint de Ejecución</h2>
+                <ul class="sprint-list">
+                    <li class="sprint-step">
+                        <span class="sprint-date">Vie. 29 Mayo</span>
+                        <h4>Fase Financiera</h4>
+                        <p>Cálculo de costos y estructura matemática inicial.</p>
+                    </li>
+                    <li class="sprint-step">
+                        <span class="sprint-date">Mar. 2 Junio</span>
+                        <h4>Branding y Copy</h4>
+                        <p>Creación de slogans comerciales y anuncios publicitarios.</p>
+                    </li>
+                    <li class="sprint-step">
+                        <span class="sprint-date">Mié. 3 Junio</span>
+                        <h4>Preventa Activa</h4>
+                        <p>Auditoría de precios y apertura de pedidos confirmados.</p>
+                    </li>
+                    <li class="sprint-step">
+                        <span class="sprint-date">Jue. 4 Junio</span>
+                        <h4>Simulación</h4>
+                        <p>Revisión de comprobantes y portafolio de control.</p>
+                    </li>
+                    <li class="sprint-step final">
+                        <span class="sprint-date" style="color: var(--accent-orange);">Vie. 5 Junio</span>
+                        <h4 style="color: var(--accent-orange);">¡Demo Day!</h4>
+                        <p>Venta interna autorizada y rendición final de cuentas.</p>
+                    </li>
+                </ul>
+            </section>
+        </main>
+
+    </div>
+
+</body>
+</html>
